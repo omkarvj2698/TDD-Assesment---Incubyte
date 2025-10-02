@@ -8,9 +8,14 @@ class Calculator:
         delimiters = list(self.DEFAULT_DELIMITERS)
         payload = numbers
 
+        # if headers like: //;\n1;2 or //[%]\n1%2
         if numbers.startswith("//"):
             header, payload = numbers.split("\n", 1)
-            custom = header[2:]
+            custom = header[2:]  # fetch text after //
+
+            # accept either //;\n  OR  //[;]\n
+            if custom.startswith("[") and custom.endswith("]"):
+                custom = custom[1:-1]  # strip the surrounding brackets
             delimiters.append(custom)
 
         parts = self._split(payload, delimiters)
