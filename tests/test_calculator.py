@@ -1,5 +1,5 @@
 from calculator import Calculator
 
-def test_single_number_returns_value():
+def test_two_numbers_are_summed():
     calc = Calculator()
-    assert calc.add("7") == 7
+    assert calc.add("1,5") == 6
