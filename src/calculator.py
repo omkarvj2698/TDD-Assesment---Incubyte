@@ -8,17 +8,19 @@ class Calculator:
         delimiters = list(self.DEFAULT_DELIMITERS)
         payload = numbers
 
-        # header like: //;\n1;2
         if numbers.startswith("//"):
             header, payload = numbers.split("\n", 1)
             custom = header[2:]
             delimiters.append(custom)
 
-        if all(d not in payload for d in delimiters):
-            return int(payload)
-
         parts = self._split(payload, delimiters)
-        return sum(int(p) for p in parts if p != "")
+        ints = [int(p) for p in parts if p != ""]
+
+        negatives = [n for n in ints if n < 0]
+        if negatives:
+            raise ValueError("negative numbers not allowed " + ",".join(str(n) for n in negatives))
+
+        return sum(ints)
 
     def _split(self, s: str, delims):
         primary = delims[0]
