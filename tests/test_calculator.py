@@ -1,5 +1,5 @@
 from src.calculator import Calculator
 
-def test_empty_string_returns_0():
+def test_single_number_returns_value():
     calc = Calculator()
-    assert calc.add("") == 0
+    assert calc.add("7") == 7
