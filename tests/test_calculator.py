@@ -30,3 +30,7 @@ def test_negatives_raise_listing_all():
     with pytest.raises(ValueError) as exc:
         calc.add("1,-2,3,-5")
     assert str(exc.value) == "negative numbers not allowed -2,-5"
+
+def test_custom_delimiter_bracket_form_single_char():
+    calc = Calculator()
+    assert calc.add("//[;]\n1;2;3") == 6
