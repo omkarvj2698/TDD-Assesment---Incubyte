@@ -1,4 +1,4 @@
-from src.calculator import Calculator
+from calculator import Calculator
 
 def test_single_number_returns_value():
     calc = Calculator()
