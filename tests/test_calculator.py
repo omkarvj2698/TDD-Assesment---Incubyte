@@ -1,4 +1,5 @@
 from calculator import Calculator
+import pytest
 
 def test_placeholder():
     calc = Calculator()
@@ -23,3 +24,9 @@ def test_newline_as_delimiter():
 def test_custom_delimiter_header_semicolon():
     calc = Calculator()
     assert calc.add("//;\n1;2;3") == 6
+
+def test_negatives_raise_listing_all():
+    calc = Calculator()
+    with pytest.raises(ValueError) as exc:
+        calc.add("1,-2,3,-5")
+    assert str(exc.value) == "negative numbers not allowed -2,-5"
