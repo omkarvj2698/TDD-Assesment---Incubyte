@@ -19,3 +19,7 @@ def test_two_numbers_are_summed():
 def test_newline_as_delimiter():
     calc = Calculator()
     assert calc.add("1\n2,3") == 6
+
+def test_custom_delimiter_header_semicolon():
+    calc = Calculator()
+    assert calc.add("//;\n1;2;3") == 6
